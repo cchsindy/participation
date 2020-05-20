@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Step 2</h2>
+    <h2>Step 3</h2>
   </div>
 </template>
 

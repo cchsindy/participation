@@ -1,51 +1,35 @@
 <template>
   <div id="app">
     <h1>Athletic Participation</h1>
-    <h2>Step 1</h2>
-    <p>
-      Download and print the
-      <a
-        href="https://ihsaa.org/Portals/0/ihsaa/documents/quick%20resources/2020-21%20Physical%20Form.pdf?ver=2020-01-17-154323-640"
-        target="_blank"
-      >IHSAA Physical Form</a>,
-      complete all 5 pages, and scan or take a picture of each page to upload below.
-    </p>
-    <p>
-      <i>All images must be in JPEG format (.jpg) and less than 4MB each.</i>
-    </p>
-    <p>
-      Upload IHSAA form page 1
-      <br />
-      <input type="file" />
-    </p>
-    <p>
-      Upload IHSAA form page 2
-      <br />
-      <input type="file" />
-    </p>
-    <p>
-      Upload IHSAA form page 3
-      <br />
-      <input type="file" />
-    </p>
-    <p>
-      Upload IHSAA form page 4
-      <br />
-      <input type="file" />
-    </p>
-    <p>
-      Upload IHSAA form page 5
-      <br />
-      <input type="file" />
-    </p>
-    <button>Step 2</button>
+    <component :is="currentStep" />
+    <button @click="nextStep">Next Step</button>
   </div>
 </template>
 
 <script>
+import Step1 from "@/components/Step1";
+import Step2 from "@/components/Step2";
+import Step3 from "@/components/Step3";
+
 export default {
   name: "App",
-  components: {}
+  components: {
+    Step1,
+    Step2,
+    Step3
+  },
+  data: () => {
+    return {
+      currentIndex: 1,
+      currentStep: "Step1"
+    };
+  },
+  methods: {
+    nextStep() {
+      this.currentIndex++;
+      this.currentStep = "Step" + this.currentIndex;
+    }
+  }
 };
 </script>
 
