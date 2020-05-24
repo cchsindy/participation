@@ -12,10 +12,10 @@
           href="https://ihsaa.org/Portals/0/ihsaa/documents/quick%20resources/2020-21%20Physical%20Form.pdf?ver=2020-01-17-154323-640"
           target="_blank"
         >IHSAA Physical Form</a>,
-        complete all 5 pages, and scan or take a photo of each page to upload in Step 1. Images must be in JPEG format (.jpg) and less than 4MB each.
+        complete all 5 pages, and scan or take a photo of each page to upload in Step 2. Images must be in JPEG format (.jpg) and less than 4MB each.
       </li>
       <li>
-        Download and read our
+        Parents and student athletes must read our
         <a
           href="https://docs.google.com/document/d/1VpeB8edyIshu_O84cumb7E3S_UeaY6FFgULrsACuqzs"
           target="_blank"
@@ -53,7 +53,7 @@
       Parent/Guardian name:
       <input type="text" />
     </p>
-    <p>Before you continue to Step 1, make sure you have already completed all the above.</p>
+    <p>Before you continue to Step 1, make sure you have already completed the above prerequisites.</p>
   </div>
 </template>
 
