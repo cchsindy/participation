@@ -2,14 +2,33 @@
   <div>
     <h2>Step 2</h2>
     <p>
-      Download and read our
-      <a
-        href="https://docs.google.com/document/d/1VpeB8edyIshu_O84cumb7E3S_UeaY6FFgULrsACuqzs"
-        target="_blank"
-      >Athletic Handbook</a>.
+      <i>All images must be in JPEG format (.jpg) and less than 4MB each.</i>
     </p>
-    <p>I acknowlege that I have read the handbook.</p>
-    <button>I hereby sign</button>
+    <p>
+      Upload IHSAA form page 1
+      <br />
+      <input type="file" />
+    </p>
+    <p>
+      Upload IHSAA form page 2
+      <br />
+      <input type="file" />
+    </p>
+    <p>
+      Upload IHSAA form page 3
+      <br />
+      <input type="file" />
+    </p>
+    <p>
+      Upload IHSAA form page 4
+      <br />
+      <input type="file" />
+    </p>
+    <p>
+      Upload IHSAA form page 5
+      <br />
+      <input type="file" />
+    </p>
   </div>
 </template>
 

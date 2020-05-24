@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Athletic Participation</h1>
     <component :is="currentStep" />
-    <button v-if="currentIndex < 5" @click="nextStep">Next Step</button>
+    <button v-if="currentIndex < 6" @click="nextStep">Next Step</button>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ import Step2 from "@/components/Step2";
 import Step3 from "@/components/Step3";
 import Step4 from "@/components/Step4";
 import Step5 from "@/components/Step5";
+import Step6 from "@/components/Step6";
 
 export default {
   name: "App",
@@ -22,7 +23,8 @@ export default {
     Step2,
     Step3,
     Step4,
-    Step5
+    Step5,
+    Step6
   },
   data: () => {
     return {

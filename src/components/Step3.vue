@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Step 3</h2>
-    <p>I agree to transporation stuff.</p>
+    <p>I acknowlege that I have read the handbook.</p>
     <button>I hereby sign</button>
   </div>
 </template>
