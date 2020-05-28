@@ -1,14 +1,20 @@
 <template>
   <div>
     <h2>Step 1</h2>
-    <p>I have completed the Student Emergency Contacts, Student Medical Information, and Non-prescription Medication Permission forms in MySchoolApp.</p>
-    <p>I hereby sign.</p>
+    <h3>Required Enrollment Forms</h3>
+    <p>
+      I have completed the Student Emergency Contacts, Student Medical
+      Information, and Non-prescription Medication Permission forms in
+      MySchoolApp.
+    </p>
+    <button>Parent/Guardian Acknowledgement</button>
+    <br />
+    <br />
   </div>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

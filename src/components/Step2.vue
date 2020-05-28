@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Step 2</h2>
+    <h3>IHSAA Forms</h3>
     <p>
       <i>All images must be in JPEG format (.jpg) and less than 4MB each.</i>
     </p>
@@ -33,8 +34,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
