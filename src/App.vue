@@ -72,6 +72,9 @@ export default {
         case 4:
           this.saveStep4()
           break
+        case 5:
+          this.saveStep5()
+          break
       }
     },
     saveStep0() {
@@ -104,7 +107,7 @@ export default {
       }
     },
     saveStep1() {
-      const forms = this.$refs.comp.$data.acknowledged
+      const forms = this.$refs.comp.$data.parent
       if (forms === false) {
         this.error =
           'You must acknowledge that you have completed the required enrollment forms before continuing.'
@@ -192,6 +195,29 @@ export default {
             {
               concussion_sca_student: student,
               concussion_sca_parent: parent,
+            },
+            { merge: true }
+          )
+          .then(() => {
+            this.advanceStep()
+          })
+          .catch(() => {
+            this.error =
+              'There was an error in processing your request. Please try again later.'
+          })
+      }
+    },
+    saveStep5() {
+      const parent = this.$refs.comp.$data.parent
+      if (parent === false) {
+        this.error = 'You must acknowledge before continuing.'
+      } else {
+        store
+          .doc(`athletic_participation/${this.docID}`)
+          .set(
+            {
+              finished: firebase.firestore.Timestamp.fromDate(new Date()),
+              transportation: parent,
             },
             { merge: true }
           )

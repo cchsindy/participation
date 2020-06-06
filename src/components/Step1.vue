@@ -7,9 +7,9 @@
       Information, and Non-prescription Medication Permission forms in
       MySchoolApp.
     </p>
-    <button @click="sign" v-if="!acknowledged">
+    <button @click="sign" v-if="!parent">
       Parent/Guardian Acknowledgement</button
-    ><span class="acknowledged" v-if="acknowledged">Acknowleged.</span>
+    ><span class="acknowledged" v-if="parent">Acknowleged.</span>
     <br />
     <br />
   </div>
@@ -19,12 +19,12 @@
 export default {
   data: () => {
     return {
-      acknowledged: false,
+      parent: false,
     }
   },
   methods: {
     sign() {
-      this.acknowledged = true
+      this.parent = true
     },
   },
 }

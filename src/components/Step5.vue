@@ -58,14 +58,26 @@
       the contents thereof, and I sign this release as my own free act. This is
       a legally binding agreement which I have read and understand.
     </p>
-    <button>Parent/Guardian Acknowledgement</button>
+    <button @click="sign" v-if="!parent">Parent/Guardian Acknowledgement</button
+    ><span class="acknowledged" v-if="parent">Acknowledged.</span>
     <br />
     <br />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data: () => {
+    return {
+      parent: false,
+    }
+  },
+  methods: {
+    sign() {
+      this.parent = true
+    },
+  },
+}
 </script>
 
 <style scoped></style>
