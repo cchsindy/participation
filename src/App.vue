@@ -27,7 +27,6 @@ const app = firebase.initializeApp({
   messagingSenderId: '945207168321',
   appId: '1:945207168321:web:e42d0845df84c8c24e65c0',
 })
-// eslint-disable-next-line no-unused-vars
 const store = app.firestore()
 
 export default {
