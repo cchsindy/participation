@@ -1,9 +1,14 @@
 <template>
   <div id="app">
-    <h1>Athletic Participation</h1>
-    <component ref="comp" :is="currentStep" />
-    <button v-if="currentIndex < 6" @click="nextStep">Next Step</button>
-    <p class="error" v-if="error">{{ error }}</p>
+    <div class="header">
+      <img src="@/assets/logo.png" class="logo" />
+    </div>
+    <div class="content">
+      <h1>Athletic Participation</h1>
+      <component ref="comp" :is="currentStep" />
+      <button v-if="currentIndex < 6" @click="nextStep">Next Step</button>
+      <p class="error" v-if="error">{{ error }}</p>
+    </div>
   </div>
 </template>
 
@@ -235,11 +240,50 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap');
+
+html,
+body {
+  background: #4a6830;
+  font-family: 'Work Sans';
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background: #4e9db6;
+  border: none;
+  border-radius: 1vw;
+  color: white;
+  font-family: 'Work Sans';
+  font-size: 1.25em;
+  padding: 1vw;
+}
+
+input {
+  font-family: 'Work Sans';
+  font-size: 1em;
+}
+
 .acknowledged {
-  color: green;
+  background: #4a6830;
+  color: white;
+  display: inline-block;
+  padding: 1vw;
   text-transform: uppercase;
+}
+.content {
+  background: white;
+  padding: 2vw;
 }
 .error {
   color: red;
+  font-weight: bold;
+}
+.header {
+  padding: 1vw;
+}
+.logo {
+  height: 100px;
 }
 </style>
