@@ -90,6 +90,7 @@ export default {
             started: firebase.firestore.Timestamp.fromDate(new Date()),
             student,
             parent,
+            year: '2020-2021',
           })
           .then((result) => {
             if (result.id) {

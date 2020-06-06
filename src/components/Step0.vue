@@ -9,7 +9,7 @@
         >
         and confirm that you have completed the Student Emergency Contacts,
         Student Medical Information, and Non-prescription Medication Permission
-        forms.
+        forms for the 2020-2021 school year.
       </li>
       <li>
         Download and print the
