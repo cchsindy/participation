@@ -19,8 +19,10 @@
           >IHSAA Physical Form</a
         >, complete all 5 pages, and scan or take a photo of each page to upload
         in Step 2. Images must be in JPEG format (.jpg) and less than 4MB each.
-        NOTE: 2019-2020 Covenant students who completed the 2019-2020 IHSAA Form
-        do not need to complete the 2020-2021 IHSAA Form.
+        <b
+          >NOTE: 2019-2020 Covenant students who completed the 2019-2020 IHSAA
+          Form do not need to complete the 2020-2021 IHSAA Form.</b
+        >
       </li>
       <li>
         Parents and student athletes must read our

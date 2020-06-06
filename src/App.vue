@@ -9,6 +9,7 @@
       <button v-if="currentIndex < 6" @click="nextStep">Next Step</button>
       <p class="error" v-if="error">{{ error }}</p>
     </div>
+    <div class="footer">Covenant Christian High School Athletic Department</div>
   </div>
 </template>
 
@@ -85,8 +86,7 @@ export default {
       const student = this.$refs.comp.$refs.studentName.value.trim()
       const parent = this.$refs.comp.$refs.parentName.value.trim()
       if (student === '' || parent === '') {
-        this.error =
-          'You must enter both the student and parent names to continue.'
+        this.error = 'You must enter both student and parent names to continue.'
       } else {
         store
           .collection('athletic_participation')
@@ -280,10 +280,15 @@ input {
   color: red;
   font-weight: bold;
 }
+.footer {
+  color: white;
+  min-height: 5vh;
+  padding: 1vw;
+}
 .header {
   padding: 1vw;
 }
 .logo {
-  height: 100px;
+  /* height: 100px; */
 }
 </style>

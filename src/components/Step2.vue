@@ -9,36 +9,41 @@
     <p>
       <i>All images must be in JPEG format (.jpg) and less than 4MB each.</i>
     </p>
-    <p>
+    <p v-if="!page1">
       Upload IHSAA form page 1
       <br />
       <input ref="page1" type="file" />
-      <button @click="upload(1)">Upload</button>
+      <button @click="upload(1)">Upload Page 1</button>
     </p>
-    <p>
+    <p class="uploaded" v-if="page1">Page 1 uploaded.</p>
+    <p v-if="!page2">
       Upload IHSAA form page 2
       <br />
       <input ref="page2" type="file" />
-      <button @click="upload(2)">Upload</button>
+      <button @click="upload(2)">Upload Page 2</button>
     </p>
-    <p>
+    <p class="uploaded" v-if="page2">Page 2 uploaded.</p>
+    <p v-if="!page3">
       Upload IHSAA form page 3
       <br />
       <input ref="page3" type="file" />
-      <button @click="upload(3)">Upload</button>
+      <button @click="upload(3)">Upload Page 3</button>
     </p>
-    <p>
+    <p class="uploaded" v-if="page3">Page 3 uploaded.</p>
+    <p v-if="!page4">
       Upload IHSAA form page 4
       <br />
       <input ref="page4" type="file" />
-      <button @click="upload(4)">Upload</button>
+      <button @click="upload(4)">Upload Page 4</button>
     </p>
-    <p>
+    <p class="uploaded" v-if="page4">Page 4 uploaded.</p>
+    <p v-if="!page5">
       Upload IHSAA form page 5
       <br />
       <input ref="page5" type="file" />
-      <button @click="upload(5)">Upload</button>
+      <button @click="upload(5)">Upload Page 5</button>
     </p>
+    <p class="uploaded" v-if="page5">Page 5 uploaded.</p>
     <p class="error" v-if="error">{{ error }}</p>
   </div>
 </template>
@@ -124,5 +129,9 @@ export default {
 <style scoped>
 .error {
   color: red;
+}
+.uploaded {
+  color: #4a6830;
+  font-weight: bold;
 }
 </style>
