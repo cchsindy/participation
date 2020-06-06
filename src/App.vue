@@ -63,6 +63,12 @@ export default {
         case 1:
           this.saveStep1()
           break
+        case 2:
+          this.saveStep2()
+          break
+        case 3:
+          this.saveStep3()
+          break
       }
     },
     saveStep0() {
@@ -143,11 +149,43 @@ export default {
             'There was an error in processing your request. Please try again later.'
         })
     },
+    saveStep3() {
+      const exception = this.$refs.comp.$data.exception
+      const parent1 = this.$refs.comp.$data.parent1
+      const parent2 = this.$refs.comp.$data.parent2
+      const student = this.$refs.comp.$data.student
+      if (parent1 === false || parent2 === false || student === false) {
+        this.error = 'You must acknowledge each item before continuing.'
+      } else {
+        store
+          .doc(`athletic_participation/${this.docID}`)
+          .set(
+            {
+              handbook_exception: exception,
+              handbook_parent1: parent1,
+              handbook_parent2: parent2,
+              handbook_student: student,
+            },
+            { merge: true }
+          )
+          .then(() => {
+            this.advanceStep()
+          })
+          .catch(() => {
+            this.error =
+              'There was an error in processing your request. Please try again later.'
+          })
+      }
+    },
   },
 }
 </script>
 
 <style>
+.acknowledged {
+  color: green;
+  text-transform: uppercase;
+}
 .error {
   color: red;
 }

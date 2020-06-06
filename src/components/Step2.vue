@@ -93,7 +93,25 @@ export default {
           ACL: 'public-read',
         }
         s3.upload(params, (err, data) => {
-          if (!err) this.page1 = data.Location
+          if (!err) {
+            switch (page) {
+              case 1:
+                this.page1 = data.Location
+                break
+              case 2:
+                this.page2 = data.Location
+                break
+              case 3:
+                this.page3 = data.Location
+                break
+              case 4:
+                this.page4 = data.Location
+                break
+              case 5:
+                this.page5 = data.Location
+                break
+            }
+          }
         })
       } else {
         this.error = 'Image file is either too large or not of supported type.'

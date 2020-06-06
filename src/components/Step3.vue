@@ -26,7 +26,7 @@
         <li>
           Permission for my son/daughter to participate in any inter-school
           sports except
-          <input type="text" />.
+          <input type="text" v-model="exception" />.
         </li>
         <li>
           An awareness of the school’s policies as noted in the Student Handbook
@@ -40,7 +40,7 @@
               <td>Academics</td>
             </tr>
             <tr>
-              <td>tdaining &amp; Conduct Rules</td>
+              <td>Training &amp; Conduct Rules</td>
               <td>Disciplinary Codes</td>
               <td>Awards</td>
               <td>Other Handbook Items</td>
@@ -49,7 +49,9 @@
         </li>
       </ol>
     </ol>
-    <button>Parent/Guardian Acknowledgement</button>
+    <button @click="sign(1)" v-if="!parent1">
+      Parent/Guardian Acknowledgement</button
+    ><span class="acknowledged" v-if="parent1">Acknowleged.</span>
     <h3>
       Student Application and Parent/Guardian Authorization for Participation
     </h3>
@@ -71,10 +73,14 @@
       information may be considered by school officials in determining a
       student’s eligibility to participate in the Athletic Program.
     </p>
-    <button>Parent/Guardian Acknowledgement</button>
+    <button @click="sign(2)" v-if="!parent2">
+      Parent/Guardian Acknowledgement</button
+    ><span class="acknowledged" v-if="parent2">Acknowledged.</span>
     <br />
     <br />
-    <button>Student/Athlete Acknowledgement</button>
+    <button @click="sign(3)" v-if="!student">
+      Student/Athlete Acknowledgement</button
+    ><span class="acknowledged" v-if="student">Acknowledged.</span>
     <p>
       <i
         >Student/Athlete may not participate in practices or contests until this
@@ -96,7 +102,31 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data: () => {
+    return {
+      exception: '',
+      parent1: false,
+      parent2: false,
+      student: false,
+    }
+  },
+  methods: {
+    sign(i) {
+      switch (i) {
+        case 1:
+          this.parent1 = true
+          break
+        case 2:
+          this.parent2 = true
+          break
+        case 3:
+          this.student = true
+          break
+      }
+    },
+  },
+}
 </script>
 
 <style scoped>
