@@ -45,7 +45,9 @@
       risks of continuing to play after concussion or head injury, and the
       symptoms of sudden cardiac arrest.
     </p>
-    <button>Student/Athlete Acknowledgement</button>
+    <button @click="sign(1)" v-if="!student">
+      Student/Athlete Acknowledgement</button
+    ><span class="acknowledged" v-if="student">Acknowledged.</span>
     <p>
       I, as the parent or legal guardian of the above named student, have
       received and read both of the fact sheets regarding concussion and sudden
@@ -54,14 +56,35 @@
       after concussion or head injury, and the symptoms of sudden cardiac
       arrest.
     </p>
-    <button>Parent/Guardian Acknowledgement</button>
+    <button @click="sign(2)" v-if="!parent">
+      Parent/Guardian Acknowledgement</button
+    ><span class="acknowledged" v-if="parent">Acknowledged.</span>
     <br />
     <br />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data: () => {
+    return {
+      student: false,
+      parent: false,
+    }
+  },
+  methods: {
+    sign(i) {
+      switch (i) {
+        case 1:
+          this.student = true
+          break
+        case 2:
+          this.parent = true
+          break
+      }
+    },
+  },
+}
 </script>
 
 <style scoped></style>

@@ -69,6 +69,9 @@ export default {
         case 3:
           this.saveStep3()
           break
+        case 4:
+          this.saveStep4()
+          break
       }
     },
     saveStep0() {
@@ -165,6 +168,30 @@ export default {
               handbook_parent1: parent1,
               handbook_parent2: parent2,
               handbook_student: student,
+            },
+            { merge: true }
+          )
+          .then(() => {
+            this.advanceStep()
+          })
+          .catch(() => {
+            this.error =
+              'There was an error in processing your request. Please try again later.'
+          })
+      }
+    },
+    saveStep4() {
+      const student = this.$refs.comp.$data.student
+      const parent = this.$refs.comp.$data.parent
+      if (student === false || parent === false) {
+        this.error = 'You must acknowledge each item before continuing.'
+      } else {
+        store
+          .doc(`athletic_participation/${this.docID}`)
+          .set(
+            {
+              concussion_sca_student: student,
+              concussion_sca_parent: parent,
             },
             { merge: true }
           )

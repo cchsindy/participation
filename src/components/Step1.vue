@@ -7,7 +7,9 @@
       Information, and Non-prescription Medication Permission forms in
       MySchoolApp.
     </p>
-    <button @click="sign">Parent/Guardian Acknowledgement</button>
+    <button @click="sign" v-if="!acknowledged">
+      Parent/Guardian Acknowledgement</button
+    ><span class="acknowledged" v-if="acknowledged">Acknowleged.</span>
     <br />
     <br />
   </div>
