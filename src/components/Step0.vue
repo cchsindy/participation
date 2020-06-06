@@ -73,7 +73,9 @@
     <p>Steps 3 and 4 require your student's participation.</p>
     <p>
       Before you continue to Step 1, make sure you have already completed the
-      above prerequisites.
+      above prerequisites. There are 5 steps and you must complete all of them
+      in one session. You cannot come back to this site to continue where you
+      left off. You will have to start over.
     </p>
   </div>
 </template>

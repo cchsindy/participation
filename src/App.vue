@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <h1>Athletic Participation</h1>
-    <component ref="comp" :is="currentStep" @saveStep="saveStep" />
+    <component ref="comp" :is="currentStep" />
     <button v-if="currentIndex < 6" @click="nextStep">Next Step</button>
+    <p class="error" v-if="error">{{ error }}</p>
   </div>
 </template>
 
@@ -45,6 +46,7 @@ export default {
       currentIndex: 0,
       currentStep: 'Step0',
       docID: null,
+      error: '',
     }
   },
   methods: {
@@ -53,9 +55,23 @@ export default {
       this.currentStep = 'Step' + this.currentIndex
     },
     nextStep() {
-      if (this.currentIndex === 0) {
-        const student = this.$refs.comp.$refs.studentName.value.trim()
-        const parent = this.$refs.comp.$refs.parentName.value.trim()
+      this.error = ''
+      switch (this.currentIndex) {
+        case 0:
+          this.saveStep0()
+          break
+        case 1:
+          // save step 1
+          break
+      }
+    },
+    saveStep0() {
+      const student = this.$refs.comp.$refs.studentName.value.trim()
+      const parent = this.$refs.comp.$refs.parentName.value.trim()
+      if (student === '' || parent === '') {
+        this.error =
+          'You must enter both the student and parent names to continue.'
+      } else {
         store
           .collection('athletic_participation')
           .add({
@@ -67,24 +83,19 @@ export default {
             if (result.id) {
               this.docID = result.id
               this.advanceStep()
+            } else {
+              this.error =
+                'There was an error in processing your request. Please try again later.'
             }
           })
       }
-    },
-    saveStep(data) {
-      console.log(data)
     },
   },
 }
 </script>
 
 <style>
-#app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px; */
+.error {
+  color: red;
 }
 </style>
