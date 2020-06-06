@@ -117,6 +117,32 @@ export default {
           })
       }
     },
+    saveStep2() {
+      const p1 = this.$refs.comp.$data.page1
+      const p2 = this.$refs.comp.$data.page2
+      const p3 = this.$refs.comp.$data.page3
+      const p4 = this.$refs.comp.$data.page4
+      const p5 = this.$refs.comp.$data.page5
+      store
+        .doc(`athletic_participation/${this.docID}`)
+        .set(
+          {
+            p1,
+            p2,
+            p3,
+            p4,
+            p5,
+          },
+          { merge: true }
+        )
+        .then(() => {
+          this.advanceStep()
+        })
+        .catch(() => {
+          this.error =
+            'There was an error in processing your request. Please try again later.'
+        })
+    },
   },
 }
 </script>
