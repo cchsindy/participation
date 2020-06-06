@@ -61,7 +61,7 @@ export default {
           this.saveStep0()
           break
         case 1:
-          // save step 1
+          this.saveStep1()
           break
       }
     },
@@ -87,6 +87,33 @@ export default {
               this.error =
                 'There was an error in processing your request. Please try again later.'
             }
+          })
+          .catch(() => {
+            this.error =
+              'There was an error in processing your request. Please try again later.'
+          })
+      }
+    },
+    saveStep1() {
+      const forms = this.$refs.comp.$data.acknowledged
+      if (forms === false) {
+        this.error =
+          'You must acknowledge that you have completed the required enrollment forms before continuing.'
+      } else {
+        store
+          .doc(`athletic_participation/${this.docID}`)
+          .set(
+            {
+              enrollment_forms: true,
+            },
+            { merge: true }
+          )
+          .then(() => {
+            this.advanceStep()
+          })
+          .catch(() => {
+            this.error =
+              'There was an error in processing your request. Please try again later.'
           })
       }
     },

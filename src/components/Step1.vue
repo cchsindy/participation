@@ -7,14 +7,25 @@
       Information, and Non-prescription Medication Permission forms in
       MySchoolApp.
     </p>
-    <button>Parent/Guardian Acknowledgement</button>
+    <button @click="sign">Parent/Guardian Acknowledgement</button>
     <br />
     <br />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data: () => {
+    return {
+      acknowledged: false,
+    }
+  },
+  methods: {
+    sign() {
+      this.acknowledged = true
+    },
+  },
+}
 </script>
 
 <style scoped></style>
