@@ -288,7 +288,4 @@ input {
 .header {
   padding: 1vw;
 }
-.logo {
-  /* height: 100px; */
-}
 </style>
