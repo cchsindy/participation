@@ -97,23 +97,23 @@ export default {
           Body: blob,
           ACL: "private"
         };
-        s3.upload(params, (err, data) => {
+        s3.upload(params, err => {
           if (!err) {
             switch (page) {
               case 1:
-                this.page1 = data.Location;
+                this.page1 = params.Key;
                 break;
               case 2:
-                this.page2 = data.Location;
+                this.page2 = params.Key;
                 break;
               case 3:
-                this.page3 = data.Location;
+                this.page3 = params.Key;
                 break;
               case 4:
-                this.page4 = data.Location;
+                this.page4 = params.Key;
                 break;
               case 5:
-                this.page5 = data.Location;
+                this.page5 = params.Key;
                 break;
             }
           }
