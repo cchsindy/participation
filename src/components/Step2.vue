@@ -49,81 +49,81 @@
 </template>
 
 <script>
-import AWS from 'aws-sdk'
-import AWSconfig from '@/components/AWS-config'
+import AWS from "aws-sdk";
+import AWSconfig from "@/components/AWS-config";
 
-const endpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com')
+const endpoint = new AWS.Endpoint("nyc3.digitaloceanspaces.com");
 const s3 = new AWS.S3({
   endpoint,
   accessKeyId: AWSconfig.key,
-  secretAccessKey: AWSconfig.secret,
-})
+  secretAccessKey: AWSconfig.secret
+});
 
 export default {
   data: () => {
     return {
-      error: '',
-      page1: '',
-      page2: '',
-      page3: '',
-      page4: '',
-      page5: '',
-    }
+      error: "",
+      page1: "",
+      page2: "",
+      page3: "",
+      page4: "",
+      page5: ""
+    };
   },
   methods: {
     upload(page) {
-      this.error = ''
-      let file = this.$refs.page1.files[0]
+      this.error = "";
+      let file = this.$refs.page1.files[0];
       switch (page) {
         case 2:
-          file = this.$refs.page2.files[0]
-          break
+          file = this.$refs.page2.files[0];
+          break;
         case 3:
-          file = this.$refs.page3.files[0]
-          break
+          file = this.$refs.page3.files[0];
+          break;
         case 4:
-          file = this.$refs.page4.files[0]
-          break
+          file = this.$refs.page4.files[0];
+          break;
         case 5:
-          file = this.$refs.page5.files[0]
-          break
+          file = this.$refs.page5.files[0];
+          break;
       }
-      if (file.size < 4000000 && file.type === 'image/jpeg') {
-        const blob = file.slice(0, file.size - 1)
+      if (file.size < 4000000 && file.type === "image/jpeg") {
+        const blob = file.slice(0, file.size - 1);
         const params = {
-          Bucket: 'covenant',
+          Bucket: "covenant",
           Key: `ihsaa/${this.$parent.docID}_page${page}.jpg`,
           ContentType: file.type,
           Body: blob,
-          ACL: 'public-read',
-        }
+          ACL: "private"
+        };
         s3.upload(params, (err, data) => {
           if (!err) {
             switch (page) {
               case 1:
-                this.page1 = data.Location
-                break
+                this.page1 = data.Location;
+                break;
               case 2:
-                this.page2 = data.Location
-                break
+                this.page2 = data.Location;
+                break;
               case 3:
-                this.page3 = data.Location
-                break
+                this.page3 = data.Location;
+                break;
               case 4:
-                this.page4 = data.Location
-                break
+                this.page4 = data.Location;
+                break;
               case 5:
-                this.page5 = data.Location
-                break
+                this.page5 = data.Location;
+                break;
             }
           }
-        })
+        });
       } else {
-        this.error = 'Image file is either too large or not of supported type.'
+        this.error = "Image file is either too large or not of supported type.";
       }
-    },
-  },
-}
+    }
+  }
+};
 </script>
 
 <style scoped>
