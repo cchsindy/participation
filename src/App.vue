@@ -14,29 +14,29 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import Step0 from '@/components/Step0'
-import Step1 from '@/components/Step1'
-import Step2 from '@/components/Step2'
-import Step3 from '@/components/Step3'
-import Step4 from '@/components/Step4'
-import Step5 from '@/components/Step5'
-import Step6 from '@/components/Step6'
+import firebase from "firebase/app";
+import "firebase/firestore";
+import Step0 from "@/components/Step0";
+import Step1 from "@/components/Step1";
+import Step2 from "@/components/Step2";
+import Step3 from "@/components/Step3";
+import Step4 from "@/components/Step4";
+import Step5 from "@/components/Step5";
+import Step6 from "@/components/Step6";
 
 const app = firebase.initializeApp({
-  apiKey: 'AIzaSyCg_FVHdzP3kvRAyrnpE2bJUsQfMRUgFW4',
-  authDomain: 'my-covenant.firebaseapp.com',
-  databaseURL: 'https://my-covenant.firebaseio.com',
-  projectId: 'my-covenant',
-  storageBucket: 'my-covenant.appspot.com',
-  messagingSenderId: '945207168321',
-  appId: '1:945207168321:web:e42d0845df84c8c24e65c0',
-})
-const store = app.firestore()
+  apiKey: "AIzaSyCg_FVHdzP3kvRAyrnpE2bJUsQfMRUgFW4",
+  authDomain: "my-covenant.firebaseapp.com",
+  databaseURL: "https://my-covenant.firebaseio.com",
+  projectId: "my-covenant",
+  storageBucket: "my-covenant.appspot.com",
+  messagingSenderId: "945207168321",
+  appId: "1:945207168321:web:e42d0845df84c8c24e65c0"
+});
+const store = app.firestore();
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Step0,
     Step1,
@@ -44,129 +44,135 @@ export default {
     Step3,
     Step4,
     Step5,
-    Step6,
+    Step6
   },
   data: () => {
     return {
       currentIndex: 0,
-      currentStep: 'Step0',
+      currentStep: "Step0",
       docID: null,
-      error: '',
-    }
+      error: ""
+    };
   },
   methods: {
     advanceStep() {
-      this.currentIndex++
-      this.currentStep = 'Step' + this.currentIndex
+      this.currentIndex++;
+      this.currentStep = "Step" + this.currentIndex;
+      window.scrollTo(0, 0);
     },
     nextStep() {
-      this.error = ''
+      this.error = "";
       switch (this.currentIndex) {
         case 0:
-          this.saveStep0()
-          break
+          this.saveStep0();
+          break;
         case 1:
-          this.saveStep1()
-          break
+          this.saveStep1();
+          break;
         case 2:
-          this.saveStep2()
-          break
+          this.saveStep2();
+          break;
         case 3:
-          this.saveStep3()
-          break
+          this.saveStep3();
+          break;
         case 4:
-          this.saveStep4()
-          break
+          this.saveStep4();
+          break;
         case 5:
-          this.saveStep5()
-          break
+          this.saveStep5();
+          break;
       }
     },
     saveStep0() {
-      const student = this.$refs.comp.$refs.studentName.value.trim()
-      const parent = this.$refs.comp.$refs.parentName.value.trim()
-      if (student === '' || parent === '') {
-        this.error = 'You must enter both student and parent names to continue.'
+      const student = this.$refs.comp.$refs.studentName.value.trim();
+      const parent = this.$refs.comp.$refs.parentName.value.trim();
+      if (student === "" || parent === "") {
+        this.error =
+          "You must enter both student and parent names to continue.";
       } else {
         store
-          .collection('athletic_participation')
+          .collection("athletic_participation")
           .add({
             started: firebase.firestore.Timestamp.fromDate(new Date()),
             student,
             parent,
-            year: '2020-2021',
+            year: "2020-2021"
           })
-          .then((result) => {
+          .then(result => {
             if (result.id) {
-              this.docID = result.id
-              this.advanceStep()
+              this.docID = result.id;
+              this.advanceStep();
             } else {
               this.error =
-                'There was an error in processing your request. Please try again later.'
+                "There was an error in processing your request. Please try again later.";
             }
           })
           .catch(() => {
             this.error =
-              'There was an error in processing your request. Please try again later.'
-          })
+              "There was an error in processing your request. Please try again later.";
+          });
       }
     },
     saveStep1() {
-      const forms = this.$refs.comp.$data.parent
+      const forms = this.$refs.comp.$data.parent;
       if (forms === false) {
         this.error =
-          'You must acknowledge that you have completed the required enrollment forms before continuing.'
+          "You must acknowledge that you have completed the required enrollment forms before continuing.";
       } else {
         store
           .doc(`athletic_participation/${this.docID}`)
           .set(
             {
-              enrollment_forms: true,
+              enrollment_forms: true
             },
             { merge: true }
           )
           .then(() => {
-            this.advanceStep()
+            this.advanceStep();
           })
           .catch(() => {
             this.error =
-              'There was an error in processing your request. Please try again later.'
-          })
+              "There was an error in processing your request. Please try again later.";
+          });
       }
     },
     saveStep2() {
-      const p1 = this.$refs.comp.$data.page1
-      const p2 = this.$refs.comp.$data.page2
-      const p3 = this.$refs.comp.$data.page3
-      const p4 = this.$refs.comp.$data.page4
-      const p5 = this.$refs.comp.$data.page5
-      store
-        .doc(`athletic_participation/${this.docID}`)
-        .set(
-          {
-            p1,
-            p2,
-            p3,
-            p4,
-            p5,
-          },
-          { merge: true }
-        )
-        .then(() => {
-          this.advanceStep()
-        })
-        .catch(() => {
-          this.error =
-            'There was an error in processing your request. Please try again later.'
-        })
+      const p1 = this.$refs.comp.$data.page1;
+      const p2 = this.$refs.comp.$data.page2;
+      const p3 = this.$refs.comp.$data.page3;
+      const p4 = this.$refs.comp.$data.page4;
+      const p5 = this.$refs.comp.$data.page5;
+      if (p1 === "" || p2 === "") {
+        this.error = "You must upload your pages to continue.";
+      } else {
+        store
+          .doc(`athletic_participation/${this.docID}`)
+          .set(
+            {
+              p1,
+              p2,
+              p3,
+              p4,
+              p5
+            },
+            { merge: true }
+          )
+          .then(() => {
+            this.advanceStep();
+          })
+          .catch(() => {
+            this.error =
+              "There was an error in processing your request. Please try again later.";
+          });
+      }
     },
     saveStep3() {
-      const exception = this.$refs.comp.$data.exception
-      const parent1 = this.$refs.comp.$data.parent1
-      const parent2 = this.$refs.comp.$data.parent2
-      const student = this.$refs.comp.$data.student
+      const exception = this.$refs.comp.$data.exception;
+      const parent1 = this.$refs.comp.$data.parent1;
+      const parent2 = this.$refs.comp.$data.parent2;
+      const student = this.$refs.comp.$data.student;
       if (parent1 === false || parent2 === false || student === false) {
-        this.error = 'You must acknowledge each item before continuing.'
+        this.error = "You must acknowledge each item before continuing.";
       } else {
         store
           .doc(`athletic_participation/${this.docID}`)
@@ -175,77 +181,77 @@ export default {
               handbook_exception: exception,
               handbook_parent1: parent1,
               handbook_parent2: parent2,
-              handbook_student: student,
+              handbook_student: student
             },
             { merge: true }
           )
           .then(() => {
-            this.advanceStep()
+            this.advanceStep();
           })
           .catch(() => {
             this.error =
-              'There was an error in processing your request. Please try again later.'
-          })
+              "There was an error in processing your request. Please try again later.";
+          });
       }
     },
     saveStep4() {
-      const student = this.$refs.comp.$data.student
-      const parent = this.$refs.comp.$data.parent
+      const student = this.$refs.comp.$data.student;
+      const parent = this.$refs.comp.$data.parent;
       if (student === false || parent === false) {
-        this.error = 'You must acknowledge each item before continuing.'
+        this.error = "You must acknowledge each item before continuing.";
       } else {
         store
           .doc(`athletic_participation/${this.docID}`)
           .set(
             {
               concussion_sca_student: student,
-              concussion_sca_parent: parent,
+              concussion_sca_parent: parent
             },
             { merge: true }
           )
           .then(() => {
-            this.advanceStep()
+            this.advanceStep();
           })
           .catch(() => {
             this.error =
-              'There was an error in processing your request. Please try again later.'
-          })
+              "There was an error in processing your request. Please try again later.";
+          });
       }
     },
     saveStep5() {
-      const parent = this.$refs.comp.$data.parent
+      const parent = this.$refs.comp.$data.parent;
       if (parent === false) {
-        this.error = 'You must acknowledge before continuing.'
+        this.error = "You must acknowledge before continuing.";
       } else {
         store
           .doc(`athletic_participation/${this.docID}`)
           .set(
             {
               finished: firebase.firestore.Timestamp.fromDate(new Date()),
-              transportation: parent,
+              transportation: parent
             },
             { merge: true }
           )
           .then(() => {
-            this.advanceStep()
+            this.advanceStep();
           })
           .catch(() => {
             this.error =
-              'There was an error in processing your request. Please try again later.'
-          })
+              "There was an error in processing your request. Please try again later.";
+          });
       }
-    },
-  },
-}
+    }
+  }
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
 
 html,
 body {
   background: #4a6830;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   margin: 0;
   padding: 0;
 }
@@ -255,13 +261,13 @@ button {
   border: none;
   border-radius: 1vw;
   color: white;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   font-size: 1.25em;
   padding: 1vw;
 }
 
 input {
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   font-size: 1em;
 }
 

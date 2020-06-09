@@ -1,10 +1,9 @@
 <template>
   <div>
     <h2>Step 2</h2>
-    <h3>IHSAA Forms for 2020-2021</h3>
+    <h3>IHSAA Form for 2020-2021</h3>
     <p>
-      * If your student was enrolled at Covenant during 2019-2020 and completed
-      the 2019-2020 IHSAA Form, you may skip this step.
+      <b>* If you are uploading the supplemental form, use page 1 and 2 and leave pages 3-5 as No file chosen.</b>
     </p>
     <p>
       <i>All images must be in JPEG format (.jpg) and less than 4MB each.</i>
@@ -73,8 +72,11 @@ export default {
   methods: {
     upload(page) {
       this.error = "";
-      let file = this.$refs.page1.files[0];
+      let file;
       switch (page) {
+        case 1:
+          file = this.$refs.page1.files[0];
+          break;
         case 2:
           file = this.$refs.page2.files[0];
           break;
