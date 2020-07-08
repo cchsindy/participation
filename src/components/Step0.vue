@@ -63,6 +63,13 @@
         fact sheets.
       </li>
     </ul>
+    <p>
+      Need help?
+      <a
+        href="https://covenantchristian.instructuremedia.com/embed/f0b17a5e-ece5-40c1-b53e-ead28128a2f5"
+        target="_blank"
+      >Watch this instructional video</a> that walks through the entire process.
+    </p>
     <h3>Your Information</h3>
     <p>
       Student/Athlete name:
